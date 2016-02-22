@@ -1,0 +1,137 @@
+<!-- <html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<f:view contentType="text/html">
+<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<title>Welcome to XYZ Bank</title>
+	<h:outputStylesheet name="style.css" library="css" />
+</h:head>
+	<h:body title="Account Home Page">
+		
+	<p align="right">Welcome ABC, to your account</p>
+		<h:panelGrid columns="10" style="margin-right: 10%" >
+		
+				
+		</h:panelGrid>
+		
+		
+		<h:form>
+		
+			<!-- <p:growl  id="messages" showDetail="true" /> -->
+ 
+		    <p:toolbar>
+		        <f:facet name="left">
+		            <p:commandButton type="push" value="New" icon="ui-icon-document" />
+		 
+		            <p:commandButton type="push" value="Open" icon="ui-icon-folder-open" />
+		 
+		            <span class="ui-separator">
+		                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		 
+		            <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
+		            <p:commandButton type="button" title="Delete" icon="ui-icon-trash" />
+		            <p:commandButton type="button" title="Print" icon="ui-icon-print" />
+		        </f:facet>
+		 
+		        <f:facet name="right">
+		            <p:menuButton value="Options">
+		                <p:menuitem value="Save" actionListener="#{toolbarView.save}" update="messages" icon="ui-icon-disk" />
+		                <p:menuitem value="Update" actionListener="#{toolbarView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+		                <p:menuitem value="Delete" actionListener="#{toolbarView.delete}" ajax="false" icon="ui-icon-close" />
+		                <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+		            </p:menuButton>
+		        </f:facet>
+		 
+		    </p:toolbar>
+		</h:form>
+		
+		
+		
+		<h:form>
+			<p:panel styleClass="header" header="Posted Transactions">
+				<h:panelGrid styleClass="searchField" columns="5">
+					<h:outputText value="Start Date: " />
+					<p:calendar mindate="calwidget.today()" widgetVar="calwidget" required="false" showOn="both" label="Calendar"
+						value="#{transactionBean.startDate}" /> 
+
+					<h:outputText value="End Date: " />
+					<p:calendar mindate="calwidget.today()" widgetVar="calwidget" showOn="both" label="Calendar"
+						value="#{transactionBean.endDate}" />
+						
+					<p:commandButton type="submit" value="Search"
+						action="#{transactionBean.getTransactionList}" ajax="false" />
+				</h:panelGrid>
+			</p:panel>
+
+
+			</h:form>
+    	
+    	<h:form>
+
+	
+
+			<p:dataTable id="reportDataTable"
+				value="#{transactionBean.transactionList}" var="trans"
+				widgetVar="transactionTable" paginator="true" rows="30"
+				emptyMessage="No transactions were found"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="10,20,30"
+				style="width: 80%; margin-left: 10%; margin-right: 10%;">
+
+
+				 <p:ajax event="rowSelect" update=":playerDialogForm" oncomplete="playerDetails.show()" />
+
+				<f:facet name="header">
+						Transaction History
+						<p:outputPanel>
+			                <h:outputText value="Search all fields:" />
+			                <p:inputText id="globalFilter" onkeyup="PF('transactionTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+			            </p:outputPanel>
+				</f:facet>
+
+				<p:column sortBy="#{trans.id}">
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{trans.id}" />
+				</p:column>
+
+				<p:column sortBy="#{trans.date}">
+					<f:facet name="header">Date</f:facet>
+					<h:outputText value="#{trans.date}" />
+				</p:column>
+
+				<p:column sortBy="#{trans.description}">
+					<f:facet name="header">Description</f:facet>
+					<h:outputText value="#{trans.description}" />
+				</p:column>
+
+				<p:column sortBy="#{trans.withdrawals}">
+					<f:facet name="header">Withdrawals</f:facet>
+					<h:outputText value="#{trans.withdrawals}" />
+				</p:column>
+
+				<p:column sortBy="#{trans.deposits}">
+					<f:facet name="header">Deposits</f:facet>
+					<h:outputText value="#{trans.deposits}" />
+				</p:column>
+
+				<p:column sortBy="#{trans.balance}">
+					<f:facet name="header">Balance</f:facet>
+					<h:outputText value="#{trans.balance}" />
+				</p:column>
+
+
+			</p:dataTable>
+
+			<h:panelGrid columns="2" style="margin-left: 10%">
+
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
+ -->

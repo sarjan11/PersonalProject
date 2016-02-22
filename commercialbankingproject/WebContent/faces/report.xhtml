@@ -1,0 +1,141 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<f:view contentType="text/html">
+<h:head>
+	<title>Transaction History</title>
+	
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<h:outputStylesheet name="style.css" library="css" />
+</h:head>
+
+<h:body title="Account Home Page">
+		
+	<h:form>
+		
+			<p:growl  id="messages" showDetail="true" />
+ 
+		    <p:toolbar>
+		        <p:toolbarGroup align="left">
+		            <p:commandButton type="push" value="Manage Account" icon="ui-icon-document" />
+		 
+		            <p:commandButton type="push" value="Contact Us" icon="ui-icon-folder-open" />
+		 
+		            <!-- <span class="ui-separator">
+		                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		 
+		            <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
+		            <p:commandButton type="button" title="Delete" icon="ui-icon-trash" />
+		            <p:commandButton type="button" title="Print" icon="ui-icon-print" /> -->
+		        </p:toolbarGroup>
+		 
+		        <p:toolbarGroup align="right">
+		            <p:menuButton value="Options">
+		                <p:menuitem value="LogOut" actionListener="#{toolbarView.save}" update="messages" icon="ui-icon-disk" />
+		                <p:menuitem value="Statement" actionListener="#{toolbarView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+		                <p:menuitem value="Delete" actionListener="#{toolbarView.delete}" ajax="false" icon="ui-icon-close" />
+		                <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+		            </p:menuButton>
+		        </p:toolbarGroup>
+		 
+		    </p:toolbar>
+		</h:form>
+		
+	<p align="right">Welcome ABC, to your account !!!</p>
+
+    	<h:form>  
+    		
+	    	<p:dataTable id="reportDataTable" value="#{transactionBean.transactionList}" var="trans" widgetVar="transactionTable" paginator="true" rows="10"
+	                emptyMessage="No transactions were found"
+	                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                rowsPerPageTemplate="10,20,30" style="width: 80%; margin-left: 10%; margin-right: 10%;">
+	               <!--  <p:ajax event="rowSelect" update=":playerDialogForm" oncomplete="playerDetails.show()" /> -->
+					
+					<f:facet name="header">
+						Posted Transaction
+						<!-- <p:outputPanel>
+			                <h:outputText value="Search all fields:" />
+			                <p:inputText id="globalFilter" onkeyup="PF('transactionTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+			            </p:outputPanel> -->
+					</f:facet>
+					
+					<p:column sortBy="#{trans.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{trans.id}" />
+	                </p:column>
+					
+	                <p:column sortBy="#{trans.date}">
+	                    <f:facet name="header">Date</f:facet>
+	                    <h:outputText value="#{trans.date}" />
+	                </p:column>
+	
+	                <p:column sortBy="#{trans.description}">
+	                    <f:facet name="header">Description</f:facet>
+	                    <h:outputText value="#{trans.description}" />
+	                </p:column>
+	                
+	                <p:column sortBy="#{trans.withdrawals}">
+	                    <f:facet name="header">Withdrawals</f:facet>
+	                    <h:outputText value="#{trans.withdrawals}" />
+	                </p:column>
+	                
+	                <p:column sortBy="#{trans.deposits}">
+	                    <f:facet name="header">Deposits</f:facet>
+	                    <h:outputText value="#{trans.deposits}" />
+	                </p:column>
+	                
+	                <p:column sortBy="#{trans.balance}">
+	                    <f:facet name="header">Balance</f:facet>
+	                    <h:outputText value="#{trans.balance}" />
+	                </p:column>
+	
+	            </p:dataTable>
+	            
+	           <!--  <h:panelGrid columns="2" style="margin-left: 10%">
+	            <p:panel styleClass ="export" header="Export All Data" >
+		             
+				            <h:commandLink>
+						            <p:graphicImage value="/resources/images/excel.png" width="28"/>
+						            <p:dataExporter type="xls" target="reportDataTable" fileName="transaction history" />
+						    </h:commandLink>
+						 
+						    <h:commandLink>
+						            <p:graphicImage value="/resources/images/pdf.jpg" width="28"/>
+						            <p:dataExporter type="pdf" target="reportDataTable" fileName="transaction history"/>
+						    </h:commandLink>
+						 
+						    <h:commandLink>
+						           <p:graphicImage value="/resources/images/csv.jpg" width="28"/>
+						           <p:dataExporter type="csv" target="reportDataTable" fileName="transction history" />
+						    </h:commandLink>
+		                
+	            	</p:panel>
+	            	
+	            	<p:panel styleClass ="export" header="Export Page Data" >
+		             
+				            <h:commandLink>
+						            <p:graphicImage value="/resources/images/excel.png" width="28"/>
+						            <p:dataExporter type="xls" target="reportDataTable" fileName="transaction history" pageOnly="true"/>
+						    </h:commandLink>
+						 
+						    <h:commandLink>
+						            <p:graphicImage value="/resources/images/pdf.jpg" width="28"/>
+						            <p:dataExporter type="pdf" target="reportDataTable" fileName="transaction history" pageOnly="true"/>
+						    </h:commandLink>
+						 
+						    <h:commandLink>
+						           <p:graphicImage value="/resources/images/csv.jpg" width="28"/>
+						           <p:dataExporter type="csv" target="reportDataTable" fileName="transction history" pageOnly="true"/>
+						    </h:commandLink>
+		                
+	            	</p:panel>
+	            </h:panelGrid> -->
+    	    </h:form>
+    	</h:body>  
+    </f:view>
+</html>
+ 

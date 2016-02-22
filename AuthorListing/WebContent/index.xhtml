@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+<head>
+    <title><h:outputText value="#{msg.welcomeTitle}" />
+    </title>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+</head>
+
+<body>
+<h3><h:outputText value="#{msg.welcomeHeading}" /></h3>
+<p><h:outputText value="#{msg.welcomeMessage}" /></p>
+
+<h:dataTable value="#{userBean.result}" var="c"
+styleClass="authorTable"
+      headerClass="authorTableHeader"
+      rowClasses="authorTableOddRow,authorTableEvenRow"
+>
+	<h:column><f:facet name="header">Author ID</f:facet>#{c.authorId}</h:column>
+	<h:column><f:facet name="header">Name</f:facet>#{c.authorName}</h:column>	
+</h:dataTable>
+</body>
+</html>
